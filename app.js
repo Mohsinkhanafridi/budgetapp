@@ -12,6 +12,21 @@ const data = {
 return{
     logData: function(){
         return data;
+    },
+    addMoney: function(description, amount){
+        //create random id
+        let ID = itemCtrl.createID();
+        // create new item
+        newMoney = new Item(ID, description,amount);
+        //push it into the array
+        data.items.push(newMoney);
+
+        return newMoney;
+    },
+    createID: function(){
+        //create random id number between 0 and 10000
+        const idNum = Math.floor(Math.random()*10000);
+        return idNum;
     }
 }
 }){};
@@ -67,7 +82,13 @@ const addIncome = function(){
     //get description and amount values
     const description = UICtrl.getDescriptionInput();
     const amount = UICtrl.getValueInput();
-    console.log(description, amount);
+    if(description.descriptionInput !=='' && amount.amountInput !==''){
+        //add new item 
+        const newMoney = itemCtrl.addMoney(description.descriptionInput,amount.amountInput);
+        //check data
+        const checkData = itemCtrl.logData();
+        console.log(checkData);
+    }
 }
 
 
